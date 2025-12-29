@@ -1,3 +1,21 @@
+<?php
+include "koneksi.php";
+
+$category_id = $_GET['category'] ?? '';
+
+$sql = "SELECT t.*, c.category AS category_name
+        FROM todo t
+        LEFT JOIN category c ON t.id_category = c.id_category";
+
+if ($category_id != '') {
+    $sql .= " WHERE t.id_category = '$category_id'";
+}
+
+$sql .= " ORDER BY t.id_todo DESC";
+
+$query = mysqli_query($koneksi, $sql);
+$category = mysqli_query($koneksi, "SELECT * FROM category");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,45 +37,40 @@
         <h2>To Do List</h2>
 
        <form method="get">
-        <label>Filter Kategori</label>
-        <select name="category" onchange="this.form.submit()" >
-            <option value="">Semua</option>
-            <?php while($c=mysqli_fetch_assoc($category)){?>
-                <option value="<?=$c['category']?>"
-                    <?=isset($_GET['id_category']) && $_GET['id_category'] == $c['category'] ? 'selected' : '' ?>>
-                    <?=$c['category'];?>
-                </option>
-            <?php } ?>
-        </select>
-       </form>
+    <label>Filter Kategori</label>
+    <select name="category" onchange="this.form.submit()">
+        <option value="">Semua</option>
+        <?php while($c = mysqli_fetch_assoc($category)){ ?>
+            <option value="<?=$c['id_category']?>"
+                <?= ($category_id == $c['id_category']) ? 'selected' : '' ?>>
+                <?=$c['category'];?>
+            </option>
+        <?php } ?>
+    </select>
+</form>
+
        <br>
        <a href="tambah.php">[+]Tambah</a>
     </div>
+    <br>
 
-    <div class="container">
-        <div class="grid">
-            <?php while ($todo=mysqli_fetch_assoc($query)){?>
-                <div class="todo-card <?=$todo['status'] == 'done' ? 'dark' : 'light' ?>">
-                    <h3 class="<?=$todo['status'] == 'done' ? 'done' : '' ?>">
-                        <?=$todo['judul'];?>
-                    </h3>
+        <div class="container">
+            <div class="grid">
+                <?php while ($todo = mysqli_fetch_assoc($query)) { ?>
+                    <div class="todo-card <?= $todo['status'] == 'done' ? 'dark' : 'light' ?>">
+                        <h3><?= $todo['judul']; ?></h3>
 
-                    <p class="<?=$todo['status'] == 'done' ? 'done' : ''?>">
-                        <?=$todo['deskripsi'];?>
-                    </p>
+                        <p><?= $todo['deskripsi']; ?></p>
 
-                    <p class="<?=$todo['status'] == 'done' ? 'done' : ''?>">
-                        <strong>Kategori:</strong><?=$todo['category'];?>
-                    </p>
+                        <p><strong>Category:</strong> <?= $todo['category_name']; ?></p>
 
-                    <p class="<?=$todo['status'] == 'done' ? 'todo' : ''?>">
-                        <strong>Status:</strong> <?=$todo['status'];?>
-                    </p>
+                        <p><strong>Status:</strong> <?= $todo['status']; ?></p>
 
-                    <a href="edit.php?id_todo=<?=$todo['id_todo'];?>" class="btn btn-edit">Edit</a>
-                    <a href="hapus.php?id_todo=<?=$todo['id_todo'];?>" class="btn btn-hapus">Hapus</a>
-                </div>
-            <?php } ?>
+                        <a href="edit.php?id_todo=<?=$todo['id_todo'];?>">Edit</a>
+                        <a href="hapus.php?id_todo=<?=$todo['id_todo'];?>">Hapus</a>
+            </div>
+                <?php } ?>
+            </div>
         </div>
-    </div>
 </body>
+</html>
