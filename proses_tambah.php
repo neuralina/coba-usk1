@@ -11,9 +11,9 @@ $query = mysqli_query($koneksi, "INSERT INTO todo (judul,deskripsi,id_category,s
         VALUES ('$judul','$deskripsi','$id_category','$status')");
 
 if($query){
-    header("location:index.php?simpan=yes");
+    header("location:test.php?simpan=yes");
 }else{
-    header("location:index.php?simpan=gagal");
+    header("location:test.php?simpan=gagal");
 }
 exit();
 ?>
