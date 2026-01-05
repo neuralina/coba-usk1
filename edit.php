@@ -15,7 +15,108 @@ $category = mysqli_query($koneksi, "SELECT * FROM category");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="crud.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6fb;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    background: #081F5C;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+/* Header judul */
+.header {
+    text-align: center;
+    margin: 30px 0 10px;
+}
+
+.header h3 {
+    font-size: 22px;
+    color: #081F5C;
+}
+
+/* Container form */
+.container {
+    max-width: 450px;
+    margin: 20px auto;
+    background: white;
+    padding: 25px 30px;
+    border-radius: 14px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+/* Label */
+.container label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Input, textarea, select */
+.container input[type="text"],
+.container textarea,
+.container select {
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+}
+
+.container textarea {
+    resize: none;
+    min-height: 100px;
+}
+
+/* Fokus */
+.container input:focus,
+.container textarea:focus,
+.container select:focus {
+    border-color: #081F5C;
+}
+
+/* Button */
+.container button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    background: #081F5C;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.container button:hover {
+    opacity: 0.9;
+}
+
+    </style>
 </head>
 <body>
     <div class="navbar">

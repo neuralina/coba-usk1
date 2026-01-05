@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "koneksi.php";
 
 $username = $_POST['username'];
@@ -12,7 +13,7 @@ if(mysqli_num_rows($query) == 1) {
         $_SESSION['id_user'] = $user['id_user'];
         header("location:index.php?login=sukses");
 }else{
-    header("location:index.php?login=gagal");
+    header("location:login.php?login=gagal");
 }
 exit();
 ?>
