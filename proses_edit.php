@@ -12,9 +12,9 @@ $sql = "UPDATE todo SET judul='$judul', deskripsi='$deskripsi', id_category='$id
 $query = mysqli_query($koneksi,$sql);
 
 if($query){
-    header("location:test.php?edit=yes");
+    header("location:index.php?edit=yes");
 }else{
-    header("location:test.php?edit=no");
+    header("location:index.php?edit=no");
 }
 exit();
 

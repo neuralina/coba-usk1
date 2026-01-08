@@ -7,14 +7,13 @@ $password = $_POST['password'];
 $email = $_POST['email'];
 $birth_date = $_POST['birth_date'];
 
-$sql = "INSERT INTO user (name,username,password,email,birth_date) 
-    VALUES ('$name', '$username', '$password', '$email', '$birth_date')";
-
-$query = mysqli_query($koneksi, $sql);
-
+$password_hash = password_hash($password, PASSWORD_DEFAULT);
+$query = mysqli_query($koneksi, "INSERT INTO user (name,username,password,email,birth_date)
+        VALUES ('$name','$username','$password_hash','$email','$birth_date')");
 if($query){
     header("location:login.php?regis=yes");
 }else{
-    header("location:login.php?regis=no");
+    header("location:regis.php?regis=no");
 }
 exit();
+?>

@@ -5,15 +5,16 @@ include "koneksi.php";
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$sql = "SELECT * FROM user WHERE username = '$username' AND password = md5('$password')";
-$query = mysqli_query($koneksi, $sql);
+$query = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'");
+$user = mysqli_fetch_assoc($query);
 
-if(mysqli_num_rows($query) == 1) {
-    $user = mysqli_fetch_assoc($query);
-        $_SESSION['id_user'] = $user['id_user'];
-        header("location:index.php?login=sukses");
+if ($user && password_verify($password, $user['password'])){
+    $_SESSION['id_user'] = $user['id_user'];
+    $_SESSION['username'] = $user['username'];
+    header("location:index.php?login=sukses");
 }else{
     header("location:login.php?login=gagal");
 }
 exit();
 ?>
+

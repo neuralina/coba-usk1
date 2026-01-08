@@ -28,7 +28,7 @@ body {
     min-height: 100vh;
 }
 
-/* Navbar */
+
 .navbar {
     background: #081F5C;
     color: white;
@@ -44,7 +44,7 @@ body {
     font-weight: bold;
 }
 
-/* Header judul */
+
 .header {
     text-align: center;
     margin: 30px 0 10px;
@@ -55,7 +55,7 @@ body {
     color: #081F5C;
 }
 
-/* Container form */
+
 .container {
     max-width: 450px;
     margin: 20px auto;
@@ -65,14 +65,14 @@ body {
     box-shadow: 0 6px 15px rgba(0,0,0,0.08);
 }
 
-/* Label */
+
 .container label {
     font-weight: bold;
     font-size: 14px;
     color: #333;
 }
 
-/* Input, textarea, select */
+
 .container input[type="text"],
 .container textarea,
 .container select {
@@ -90,14 +90,14 @@ body {
     min-height: 100px;
 }
 
-/* Fokus */
+
 .container input:focus,
 .container textarea:focus,
 .container select:focus {
     border-color: #081F5C;
 }
 
-/* Button */
+
 .container button {
     width: 100%;
     margin-top: 10px;
@@ -159,5 +159,32 @@ body {
         <button type="submit">Simpan</button>
     </form>
     </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">Kategori</label>
+    <select name="id_category" id="">
+        <option value="">Pilih Kategori</option>
+        <?php while ($c= mysqli_fetch_assoc($category)) { ?>
+            <option value="<?=$c['id_category'];?>"
+                <?= $todo['id_category'] == $c['id_category'] ? 'selected' : ''?>>
+                <?=$c['category'];?>
+            </option>
+       <?php } ?>
+    </select>
+
+    <label for="">Status</label>
+    <select name="status" id="">
+        <option value="pending" <?=$todo['status'] == 'pending' ? 'selected' : ''?>>Pending</option>
+        <option value="done" <?=$todo['status'] == 'done' ? 'selected' : ''?>>Done</option>
+    </select>
 </body>
 </html>

@@ -32,7 +32,7 @@ body {
 }
 
 .navbar {
-    background: #081F5C;
+    background: #085c16ff;
     color: white;
     padding: 15px 30px;
     display: flex;
@@ -107,7 +107,6 @@ body {
         width: 110px;
     }
 }
-
     </style>
 </head>
 <body>
@@ -118,10 +117,6 @@ body {
         <a href="profil.php">Profil</a>
         <a href="logout.php">Logout</a>
     </div>
-</div>
-
-<div class="header">
-    <h2>Profil</h2>
 </div>
 
 <div class="container">

@@ -121,7 +121,7 @@ body {
 }
 
 .todo-card.dark {
-    background: #e6e9f5;
+    background: #606164ff;
 }
 
 .todo-card h3 {
@@ -208,5 +208,43 @@ body {
                 <?php } ?>
             </div>
         </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="filter-kat">
+        <form action="" method="get">
+            <label for="">Filter Kategori</label>
+            <select name="category" onchange="this.form.submit()" >
+                <option value="">Semua</option>
+                <?php while ($c = mysqli_fetch_assoc($category)) { ?>
+                    <option value="<?=$c['id_category']?>"
+                        <?= ($category_id == $c['id_category']) ? 'selected' : ''?>>
+                        <?=$c['category'];?>
+                    </option>
+                <?php } ?>
+            </select>
+        </form>
+    </div>
+    <div class="filter-sta">
+        <form action=""method="get">
+            <label for="">Filter Status</label>
+            <select name="status" onchange="this.form.submit()" >
+                <option value="">Semua</option>
+                <option value="pending" <?=($status == 'pending') ? 'selected' : ''?> >Pending</option>
+                <option value="done" <?=($status == 'done') ? 'selected' : ''?> >Done</option>
+            </select>
+            <?php if($category_id !='') { ?>
+                <input type="hidden" name="category" value="<?= $category_id ?>">
+           <?php } ?>
+        </form>
+    </div>
 </body>
 </html>
