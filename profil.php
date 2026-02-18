@@ -121,9 +121,9 @@ body {
 
 <div class="container">
     <div class="profil-card">
-        <h3>Profil Saya</h3>
+        <h3>Profil</h3>
 
-        <p><strong>Nama:</strong> <?= $user['name']; ?></p>
+        <p><strong>Nama Lengkap:</strong> <?= $user['name']; ?></p>
         <p><strong>Username:</strong> <?= $user['username']; ?></p>
         <p><strong>Email:</strong> <?= $user['email']; ?></p>
         <p><strong>Tanggal Lahir:</strong> <?= $user['birth_date']; ?></p>
